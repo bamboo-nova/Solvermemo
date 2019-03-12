@@ -32,4 +32,5 @@ class SessionsController < ApplicationController
       # ログイン失敗
       return false
     end
+  end
 end

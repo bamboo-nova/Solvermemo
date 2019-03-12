@@ -8,11 +8,15 @@ class User < ApplicationRecord
   
   has_many :posts
   
+  # フォロー、フォロワー
   has_many :relationships
   has_many :followings, through: :relationships, source: :follow
-  
   has_many :reverse_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverse_of_relationship, source: :user
+  # 投稿お気に入り機能
+  has_many :user_posts
+  has_many :favorites, through: :user_posts, source: :post
+  
   
   def follow(other_user)
     unless self == other_user
@@ -31,5 +35,20 @@ class User < ApplicationRecord
   
   def feed_posts
     Post.where(user_id: self.following_ids + [self.id])
+  end
+  
+  def like(other_post)
+    unless self == other_post
+      self.user_posts.find_or_create_by(post_id: other_post.id)
+    end
+  end
+  
+  def unlike(other_post)
+    user_post = self.user_posts.find_by(post_id: other_post.id)
+    user_post.destroy if user_post
+  end
+  
+  def liking?(other_post)
+    self.favorites.include?(other_post)
   end
 end

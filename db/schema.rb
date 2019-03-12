@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190312044744) do
+ActiveRecord::Schema.define(version: 20190312113017) do
 
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content"
@@ -32,6 +32,16 @@ ActiveRecord::Schema.define(version: 20190312044744) do
     t.index ["user_id"], name: "index_relationships_on_user_id", using: :btree
   end
 
+  create_table "user_posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_user_posts_on_post_id", using: :btree
+    t.index ["user_id", "post_id"], name: "index_user_posts_on_user_id_and_post_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_user_posts_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "email"
@@ -43,4 +53,6 @@ ActiveRecord::Schema.define(version: 20190312044744) do
   add_foreign_key "posts", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
+  add_foreign_key "user_posts", "posts"
+  add_foreign_key "user_posts", "users"
 end

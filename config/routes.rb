@@ -11,9 +11,11 @@ Rails.application.routes.draw do
     member do
       get :followings
       get :followers
+      get :favorites
     end
   end
   
   resources :posts, only: [:new, :create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :user_posts, only: [:create, :destroy]
 end

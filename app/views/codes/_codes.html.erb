@@ -1,0 +1,26 @@
+<ul class="media-list">
+  <% codes.each do |code| %>
+    <li class="media">
+      <div class="media-left">
+        <img class="media-object img-rounded" src="<%= gravatar_url(code.user, { size: 50 }) %>" alt="">
+      </div>
+      <div class="media-body">
+        <div>
+          <%= link_to code.user.name, user_path(code.user) %> <span class="text-muted">posted at <%= code.created_at %></span>
+        </div>
+        <div>
+          <p><%= code.summary %></p>
+          <%= markdown_to_html(code.program).html_safe %>
+          <p><%= code.data %></p>
+          <p><%= code.content %></p>
+        </div>
+        <div>
+          <% if current_user == code.user %>
+            <%= link_to "Delete", code, method: :delete, data: { confirm: :"You sure?" }, class: 'btn btn-danger btn-xs' %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+  <%= paginate codes %>
+</ul>

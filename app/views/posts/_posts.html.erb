@@ -11,7 +11,8 @@
         <div>
           <p><%= post.summary %></p>
           <% if post.image? %>
-            <%= image_tag post.image.to_s, :size =>'300x200' %>
+            <%= image_tag post.image.url %>
+            <!-- Image_uploader.rbのprocessが先に処理される大きなサイズ、version thumb:の方は小さいサムネ用の画像-->
           <% end %>
           <p><%= post.content %></p>
         </div>

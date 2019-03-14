@@ -1,0 +1,38 @@
+<div class="text-center">
+  <h1>コードを公開する</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%=form_for(@code) do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="form-group">
+        <%= f.label :program, 'プログラム' %>
+        <%= f.text_area :program, class: 'form-control', placeholder: 'Markdown形式での入力(```の間にプログラムを納入する形式)', rows: 10 %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :data, 'データ' %>
+        <%= f.file_field :data %>
+      </div>
+      
+      <div class="form-group">
+        <p>タグ</p>
+        <p>python</p>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :summary, '題名' %>
+        <%= f.text_field :summary, class: 'form-control input-lg' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :content, '内容' %>
+        <%= f.text_area :content, class: 'form-control',rows: 10 %>
+      </div>
+      
+      <%= f.submit '公開する', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>

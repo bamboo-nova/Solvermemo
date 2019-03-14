@@ -57,4 +57,10 @@ gem 'kaminari'
 
 # 画像の添付
 gem 'carrierwave'
-gem 'rmagick', "~> 2.16.0"
+gem 'mini_magick'
+#gem 'rmagick', "~> 2.16.0"
+
+# CodeRay
+gem 'redcarpet'
+gem 'coderay'
+gem 'nokogiri'

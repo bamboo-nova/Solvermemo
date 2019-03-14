@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_secure_password
   
   has_many :posts
+  has_many :codes
   
   # フォロー、フォロワー
   has_many :relationships

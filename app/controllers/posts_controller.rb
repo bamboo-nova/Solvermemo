@@ -14,6 +14,7 @@ class PostsController < ApplicationController
       redirect_to root_url
     else
       @posts = current_user.feed_posts.order('created_at DESC').page(params[:page])
+      @codes = current_user.codes.order('created_at DESC').page(params[:page])
       flash.now[:danger] = '投稿に失敗しました。'
       render 'toppages/index'
     end

@@ -1,5 +1,6 @@
 <% if logged_in? %>
   <%= render 'posts/posts', posts: @posts %>
+  <%= render 'codes/codes', codes: @codes %>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">

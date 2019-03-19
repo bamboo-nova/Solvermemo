@@ -1,6 +1,18 @@
 <% if logged_in? %>
-  <%= render 'posts/posts', posts: @posts %>
-  <%= render 'codes/codes', codes: @codes %>
+  <h1>投稿一覧</h1>
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#post">
+          投稿を表示する
+  </button>
+  <div id="post" class="collapse">
+    <%= render 'posts/posts', posts: @posts %>
+  </div>
+  <h1>コード一覧</h1>
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#code">
+          コードを表示する
+  </button>
+  <div id="code" class="collapse">
+    <%= render 'codes/codes', codes: @codes %>
+  </div>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">

@@ -25,6 +25,15 @@ class CodesController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
   
+  def download
+    @code = Code.find(params[:id])
+    filepath = @code.data.current_path
+    stat = File::stat(filepath)
+    send_file(filepath, :filename => @code.data_identifier, :length => stat.size)
+  end
+  
+  
+  
   private
   
   def code_params

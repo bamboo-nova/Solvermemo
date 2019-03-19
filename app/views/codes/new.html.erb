@@ -9,7 +9,7 @@
       
       <div class="form-group">
         <%= f.label :program, 'プログラム' %>
-        <%= f.text_area :program, class: 'form-control', placeholder: 'Markdown形式での入力(```の間にプログラムを納入する形式)', rows: 10 %>
+        <%= f.text_area :program, class: 'form-control', placeholder: 'Markdown形式での入力(```の間にプログラムを納入する形式)', rows: 15 %>
       </div>
       
       <div class="form-group">
@@ -29,7 +29,7 @@
       
       <div class="form-group">
         <%= f.label :content, '内容' %>
-        <%= f.text_area :content, class: 'form-control',rows: 10 %>
+        <%= f.text_area :content, class: 'form-control',placeholder: 'プログラムの内容や添付したデータの説明などを記載してください',rows: 10 %>
       </div>
       
       <%= f.submit '公開する', class: 'btn btn-primary btn-block' %>

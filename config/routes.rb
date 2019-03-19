@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   
+  get 'rankings/code', to: 'rankings#code'
+  
   get 'signup', to: 'users#new'
   resources :users, only: [:index, :show, :new, :create] do
     member do
@@ -16,8 +18,18 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :posts, only: [:new, :create, :destroy]
-  resources :codes, only: [:new, :create, :destroy]
+  resources :posts, only: [:new, :create, :destroy] do
+    member do
+      get :download
+    end
+  end
+  resources :codes, only: [:new, :create, :destroy] do
+    member do
+      get :download
+    end
+  end
+  
   resources :relationships, only: [:create, :destroy]
   resources :user_posts, only: [:create, :destroy]
+  resources :user_codes, only: [:create, :destroy]
 end

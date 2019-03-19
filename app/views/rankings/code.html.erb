@@ -1,0 +1,28 @@
+<h1>人気のコードランキング</h1>
+<% if @codes.present? %>
+  <div class='row'>
+    <% @codes.each_with_index do |code, index| %>
+      <div class="code">
+        <div class="col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading text-center">
+              <p><%= code.summary %></p>
+              <p>ユーザー:<%= link_to code.user.name, user_path(code.user) %></p>
+            </div>
+            <div class="panel-body">
+              <p><%= markdown_to_html(code.program).html_safe %></p>
+              <% if logged_in? %>
+                <div class="text-center">
+                  <%= render 'user_codes/code_favorite_button', code: code %>
+                </div>
+              <% end %>
+            </div>
+            <div class="panel-footer">
+              <p class="text-center"><%= index+1 %>位: <%= @ranking_counts[code.id] %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

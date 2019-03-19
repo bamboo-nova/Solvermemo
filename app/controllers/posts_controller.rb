@@ -26,6 +26,13 @@ class PostsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
   
+  def download
+    @post = Post.find(params[:id])
+    filepath = @post.image.current_path
+    stat = File::stat(filepath)
+    send_file(filepath, :filename => @post.image_identifier, :length => stat.size)
+  end
+  
   private
   
   def post_params

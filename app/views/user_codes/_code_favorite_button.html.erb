@@ -1,0 +1,11 @@
+<% if current_user.code_liking?(code) %>
+  <%= form_for(current_user.user_codes.find_by(code_id: code.id), html: { method: :delete }) do |f| %>
+    <%= hidden_field_tag :code_id, code.id %>
+    <%= f.submit 'Unlike Code', class: 'btn btn-danger btn-xs' %>
+  <% end %>
+<% else %>
+  <%= form_for(current_user.user_codes.build) do |f| %>
+    <%= hidden_field_tag :code_id, code.id %>
+    <%= f.submit 'Like Code', class: 'btn btn-primary btn-xs' %>
+  <% end %>
+<% end %>

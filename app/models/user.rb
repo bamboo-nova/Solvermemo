@@ -17,6 +17,9 @@ class User < ApplicationRecord
   # 投稿お気に入り機能
   has_many :user_posts
   has_many :favorites, through: :user_posts, source: :post
+  # コードお気に入り機能
+  has_many :user_codes
+  has_many :code_favorites, through: :user_codes, source: :code
   
   
   def follow(other_user)
@@ -51,5 +54,20 @@ class User < ApplicationRecord
   
   def liking?(other_post)
     self.favorites.include?(other_post)
+  end
+  
+  def code_like(other_code)
+    unless self == other_code
+      self.user_codes.find_or_create_by(code_id: other_code.id)
+    end
+  end
+  
+  def code_unlike(other_code)
+    user_code = self.user_codes.find_by(code_id: other_code.id)
+    user_code.destroy if user_code
+  end
+  
+  def code_liking?(other_code)
+    self.code_favorites.include?(other_code)
   end
 end

@@ -15,15 +15,23 @@
       <div class="collapse navbar-collapse" id="navbar-menu">
         <ul class="nav navbar-nav navbar-right">
           <% if logged_in? %>
-            <li><%= link_to 'Users', users_path %></li>
-            
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-signal" aria-hidden="true"></span>
+                ランキング
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to 'Codeランキング', rankings_code_path %></li>
+              </ul>
+            </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-tags"></span> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><%= link_to '投稿する', new_post_path %></li>
                 <li><%= link_to 'コードを公開する', new_code_path %></li>
                 <li role="separator" class="divider"></li>
-                <li><%= link_to 'Users', users_path %></li>
+                <li><%= link_to 'ユーザ一覧', users_path %></li>
               </ul>
             </li>
             

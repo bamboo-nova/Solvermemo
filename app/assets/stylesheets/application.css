@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+html {
+	overflow: auto;
+}
+body {
+	overflow: hidden;
+	min-width: 900px;
+}
+.CodeRay {
+  overflow-x: auto;
+}
+.content {
+  overflow: auto;
+}

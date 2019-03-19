@@ -1,30 +1,37 @@
 <ul class="media-list">
   <% posts.each do |post| %>
-    <li class="media">
-      <div class="media-left">
-        <img class="media-object img-rounded" src="<%= gravatar_url(post.user, { size: 50 }) %>" alt="">
-      </div>
-      <div>
-        <div>
-          <%= link_to post.user.name, user_path(post.user) %> <span class="text-muted">posted at <%= post.created_at %></span>
+    <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#<%= post.id %>">
+      <p>name: <%= post.user.name %></p>
+      <p>題名: <%= post.summary %></p>
+      <p>公開時間: <%= post.created_at.strftime('%Y/%m/%d') %></p>
+    </button>
+    <div id="<%= post.id %>" class="collapse">
+      <li class="media">
+        <div class="media-left">
+          <img class="media-object img-rounded" src="<%= gravatar_url(post.user, { size: 50 }) %>" alt="">
         </div>
         <div>
-          <p><%= post.summary %></p>
-          <% if post.image? %>
-            <p><%= image_tag post.image.url %></p>
-            <!-- Image_uploader.rbのprocessが先に処理される大きなサイズ、version thumb:の方は小さいサムネ用の画像-->
-            <%= link_to "ダウンロード", download_post_path(post) %>
-          <% end %>
-          <p class="content"><%= post.content %></p>
+          <div>
+            <%= link_to post.user.name, user_path(post.user) %> <span class="text-muted">posted at <%= post.created_at %></span>
+          </div>
+          <div>
+            <p><%= post.summary %></p>
+            <% if post.image? %>
+              <p><%= image_tag post.image.url %></p>
+              <!-- Image_uploader.rbのprocessが先に処理される大きなサイズ、version thumb:の方は小さいサムネ用の画像-->
+              <%= link_to "ダウンロード", download_post_path(post) %>
+            <% end %>
+            <p class="content"><%= post.content %></p>
+          </div>
+          <div>
+            <%= render 'user_posts/favorite_button', post: post %>
+            <% if current_user == post.user %>
+              <%= link_to "Delete", post, method: :delete, data: { confirm: :"You sure?" }, class: 'btn btn-danger btn-xs' %>
+            <% end %>
+          </div>
         </div>
-        <div>
-          <%= render 'user_posts/favorite_button', post: post %>
-          <% if current_user == post.user %>
-            <%= link_to "Delete", post, method: :delete, data: { confirm: :"You sure?" }, class: 'btn btn-danger btn-xs' %>
-          <% end %>
-        </div>
-      </div>
-    </li>
+      </li>
+    </div>
   <% end %>
   <%= paginate posts %>
 </ul>

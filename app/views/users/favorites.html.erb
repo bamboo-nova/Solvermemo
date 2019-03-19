@@ -12,7 +12,9 @@
   </aside>
   <div class="col-xs-8">
     <%= render 'layouts/infobar' %>
+    <h2>お気に入り投稿</h2>
     <%= render 'posts/posts', posts: @favorites %>
+    <h2>お気に入りコード</h2>
     <%= render 'codes/codes', codes: @code_favorites %>
   </div>
 </div>

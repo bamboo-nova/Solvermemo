@@ -18,8 +18,12 @@
       </div>
       
       <div class="form-group">
-        <p>タグ</p>
-        <p>python</p>
+        <%= f.label :tags, class: 'control-label' %>
+          <div class="checkbox">
+            <%= collection_check_boxes(:code, :tag_ids, Tag.all, :id, :name) do |b| %>
+              <%= b.label { b.check_box + b.text } %>
+            <% end %>
+          </div>
       </div>
       
       <div class="form-group">

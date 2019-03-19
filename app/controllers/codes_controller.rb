@@ -4,10 +4,12 @@ class CodesController < ApplicationController
   
   def new
     @code = current_user.codes.build
+    @tags = Tag.all
   end
 
   def create
     @code = current_user.codes.build(code_params)
+    #@tag = code.tags.build(tag_params)
     if @code.save
       flash[:success] = 'コードを公開しました。'
       redirect_to root_url
@@ -37,7 +39,7 @@ class CodesController < ApplicationController
   private
   
   def code_params
-    params.require(:code).permit(:content, :summary, :program, :data)
+    params.require(:code).permit(:content, :summary, :program, :data, {tag_ids: []})
   end
   
   def correct_user

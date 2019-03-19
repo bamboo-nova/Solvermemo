@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190315035717) do
+ActiveRecord::Schema.define(version: 20190319041905) do
+
+  create_table "code_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "code_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["code_id", "tag_id"], name: "index_code_tags_on_code_id_and_tag_id", unique: true, using: :btree
+    t.index ["code_id"], name: "index_code_tags_on_code_id", using: :btree
+    t.index ["tag_id"], name: "index_code_tags_on_tag_id", using: :btree
+  end
 
   create_table "codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -43,6 +53,12 @@ ActiveRecord::Schema.define(version: 20190315035717) do
     t.index ["user_id"], name: "index_relationships_on_user_id", using: :btree
   end
 
+  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_codes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "code_id"
@@ -71,6 +87,8 @@ ActiveRecord::Schema.define(version: 20190315035717) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "code_tags", "codes"
+  add_foreign_key "code_tags", "tags"
   add_foreign_key "codes", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "relationships", "users"

@@ -52,3 +52,11 @@ production:
   database: solvermemo_production
   username: solvermemo
   password: <%= ENV['SOLVERMEMO_DATABASE_PASSWORD'] %>
+  
+production:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: solvermemo_production
+  username: solvermemo
+  password: <%= ENV['SOLVERMEMO_DATABASE_PASSWORD'] %>

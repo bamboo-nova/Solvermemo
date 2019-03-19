@@ -64,3 +64,7 @@ gem 'mini_magick'
 gem 'redcarpet'
 gem 'coderay'
 gem 'nokogiri'
+
+group :production do
+  gem 'pg', '0.21.0'
+end

@@ -34,6 +34,11 @@ class CodesController < ApplicationController
     send_file(filepath, :filename => @code.data_identifier, :length => stat.size)
   end
   
+  def search
+    @results = []
+    item = Code.search(params[:keyword])
+    @results = item
+  end
   
   
   private

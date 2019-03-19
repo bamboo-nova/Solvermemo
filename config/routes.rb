@@ -27,6 +27,10 @@ Rails.application.routes.draw do
     member do
       get :download
     end
+    collection do
+      get :input_search
+      get :search
+    end
   end
   
   resources :relationships, only: [:create, :destroy]

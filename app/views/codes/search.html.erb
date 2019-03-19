@@ -1,0 +1,25 @@
+<div class="search">
+  <div class="row">
+    <div class="text-center">
+      <%= form_tag(search_codes_path, method: :get, class: 'form-inline') do %>
+        <div class="form-group">
+          <%= text_field_tag :keyword, @keyword, class: 'form-control input-lg', placeholder: 'プログラム、題名、内容から検索', size: 30 %>
+        </div>
+        <%= submit_tag '関連ワードを検索', class: 'btn btn-primary btn-lg' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="text-center">
+  <h2>検索されたコードの題名と公開時間を表示</h2>
+</div>
+<ul>
+  <% @results.each do |result| %>
+    <li>
+      <%= link_to result.summary, codes_user_path(result.user_id) %>
+      <%= result.created_at %>
+    </li>
+  <% end %>
+</ul>
+

@@ -36,4 +36,5 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :user_posts, only: [:create, :destroy]
   resources :user_codes, only: [:create, :destroy]
+  resources :comments, only: [:create, :destroy]
 end

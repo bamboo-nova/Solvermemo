@@ -9,9 +9,24 @@
       </div>
     </div>
     <%= render 'relationships/follow_button', user: @user %>
+    
+    <div class="content">
+      <% @comments.reverse_each do |comment| %>
+        <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="" width="25%" height="25%">
+        <p>宛先: <%= comment.reply_comment %></p>
+        <p>返信元: <%= link_to "返信元", user_path(comment.post.user) %></p>
+        <p>返信時間: <%= comment.created_at %></p>
+        <p>返信内容: <%= comment.content %></p>
+        <p>添付画像: <%= comment.image %></p>
+        <% if current_user == comment.user %>
+          <%= link_to "Delete", comment, method: :delete, data: { confirm: :"You sure?" }, class: 'btn btn-danger btn-xs' %>
+        <% end %>
+      <% end %>
+    </div>
+    
   </aside>
   <div class="col-xs-8">
     <%= render 'layouts/infobar' %>
-    <%= render 'posts/posts', posts: @posts %>
+    <%= render 'posts/posts', {posts: @posts, comments: @comments} %>
   </div>
 </div>

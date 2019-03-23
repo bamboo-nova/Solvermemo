@@ -8,6 +8,7 @@ class User < ApplicationRecord
   
   has_many :posts
   has_many :codes
+  has_many :comments
   
   # フォロー、フォロワー
   has_many :relationships

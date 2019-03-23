@@ -6,6 +6,9 @@ class ToppagesController < ApplicationController
       #@posts = current_user.posts.order('created_at DESC').page(params[:page])
       @posts = current_user.feed_posts.order('created_at DESC').page(params[:page])
       @codes = current_user.codes.order('created_at DESC').page(params[:page])
+      
+      @comments = Comment.all
+      @comment = Comment.new
     end
   end
 end

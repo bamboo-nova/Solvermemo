@@ -40,6 +40,16 @@ class CodesController < ApplicationController
     @results = item
   end
   
+  def similarity
+    @program = params[:program]
+    @codes = Code.all
+    if @program.present?
+      @similar = Cosine.calculate(@program, @codes)
+      #@result = @similar.index(@similar.max)
+      @results = @similar
+    end
+  end
+  
   
   private
   

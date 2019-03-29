@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190320105704) do
+ActiveRecord::Schema.define(version: 20190323084157) do
 
   create_table "code_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "code_id"
@@ -39,8 +39,9 @@ ActiveRecord::Schema.define(version: 20190320105704) do
     t.string   "reply_comment"
     t.string   "content"
     t.string   "image"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "parent_user_id"
     t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end

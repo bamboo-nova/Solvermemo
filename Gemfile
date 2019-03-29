@@ -65,6 +65,15 @@ gem 'redcarpet'
 gem 'coderay'
 gem 'nokogiri'
 
+# natto
+gem 'natto'
+
+# matrix
+gem 'matrix'
+
+# FontAwesomeでアイコンにする
+gem "font-awesome-rails"
+
 group :production do
   gem 'pg', '0.21.0'
 end

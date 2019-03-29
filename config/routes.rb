@@ -28,8 +28,8 @@ Rails.application.routes.draw do
       get :download
     end
     collection do
-      get :input_search
       get :search
+      get :similarity
     end
   end
   

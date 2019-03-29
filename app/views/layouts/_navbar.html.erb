@@ -5,9 +5,9 @@
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu" aria-expand="false">
           <span class="sr-only">Toggle navigation</span>
-          <span class="iconbar"></span>
-          <span class="iconbar"></span>
-          <span class="iconbar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="/">Solovermemo</a>
       </div>
@@ -32,6 +32,7 @@
                 <li><%= link_to 'コードを公開する', new_code_path %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to 'コード検索', search_codes_path %></li>
+                <li><%= link_to '類似したコードを探す', similarity_codes_path %></li>
                 <li><%= link_to 'ユーザ一覧', users_path %></li>
               </ul>
             </li>

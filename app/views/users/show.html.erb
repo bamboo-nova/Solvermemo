@@ -13,11 +13,15 @@
     <div class="content">
       <% @comments.reverse_each do |comment| %>
         <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="" width="25%" height="25%">
-        <p>宛先: <%= comment.reply_comment %></p>
-        <p>返信元: <%= link_to "返信元", user_path(comment.post.user) %></p>
+        <!--<p>宛先: <%= comment.reply_comment %></p>-->
+        <% if comment.parent_user_id == comment.post.id %>
+          <p>返信元: <%= link_to comment.post.user.name, user_path(comment.post.user) %></p>
+        <% end %>
         <p>返信時間: <%= comment.created_at %></p>
         <p>返信内容: <%= comment.content %></p>
-        <p>添付画像: <%= comment.image %></p>
+        <% if comment.image? %>
+          <p>添付画像: <%= image_tag comment.image.url %></p>
+        <% end %>
         <% if current_user == comment.user %>
           <%= link_to "Delete", comment, method: :delete, data: { confirm: :"You sure?" }, class: 'btn btn-danger btn-xs' %>
         <% end %>
@@ -27,6 +31,6 @@
   </aside>
   <div class="col-xs-8">
     <%= render 'layouts/infobar' %>
-    <%= render 'posts/posts', {posts: @posts, comments: @comments} %>
+    <%= render 'posts/posts', {posts: @posts, comments: @comments, comment: @comment} %>
   </div>
 </div>

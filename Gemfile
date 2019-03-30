@@ -66,7 +66,7 @@ gem 'coderay'
 gem 'nokogiri'
 
 # natto
-gem 'natto'
+
 
 # matrix
 gem 'matrix'

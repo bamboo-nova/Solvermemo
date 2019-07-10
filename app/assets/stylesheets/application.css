@@ -25,6 +25,11 @@ html {
 body {
 	overflow: hidden;
 }
+
+div.banner {
+  color: blue;
+  float: right;
+}
 .CodeRay {
     overflow-x: auto;
 }
@@ -45,4 +50,9 @@ ul.reply {
   text-align: left;
   padding: 5px;
   border: 5px solid pink;
+}
+
+footer {
+  clear: both;
+  background-color: #dddddd;
 }

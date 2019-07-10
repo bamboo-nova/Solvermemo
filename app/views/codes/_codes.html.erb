@@ -1,11 +1,12 @@
 <ul class="media-list">
   <% codes.each do |code| %>
-    <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#<%= code.id %>">
+    <!-- ここでdata-targetをcode.idとしてしまうと、post.idの番号と競合して、先に出ているpostが出てきてしまう-->
+    <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#<%= code.summary %>">
       <p>name: <%= code.user.name %></p>
       <p>題名: <%= code.summary %></p>
       <p>公開時間: <%= code.created_at.strftime('%Y/%m/%d') %></p>
     </button>
-    <div id="<%= code.id %>" class="collapse">
+    <div id="<%= code.summary %>" class="collapse">
       <li class="media">
         <div class="media-left">
           <img class="media-object img-rounded" src="<%= gravatar_url(code.user, { size: 50 }) %>" alt="">
@@ -16,10 +17,12 @@
           </div>
           <div>
             <div class="panel panel-info">
-              <h3 class="panel-title">題名</h3>
-            </div>
-            <div class="panel-body">
-              <p><%= code.summary %></p>
+              <div class="panel-heading">
+                <h3 class="panel-title">題名</h3>
+              </div>
+              <div class="panel-body">
+                <p><%= code.summary %></p>
+              </div>
             </div>
             
             <!-- タグの表示 -->
